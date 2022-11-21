@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import Image from "next/image";
 import reactLogo from "../assets/react.svg";
@@ -13,6 +13,12 @@ function App() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
     setGreetMsg(await invoke("greet", { name }));
   }
+
+  useEffect(() => {
+    document.addEventListener("keydown",  evt => {
+      console.log("Key down:", evt.key);
+    });
+  }, []);
 
   return (
     <div className="container">
